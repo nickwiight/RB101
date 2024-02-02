@@ -1,0 +1,5 @@
+Some documentation feels not very useful. For example, the YAML docs, feel barren,
+but there's a key line in there. YAML is an alias for Psych, the YAML engine
+for Ruby. 
+
+#load_file can be found in Psych#load_file.

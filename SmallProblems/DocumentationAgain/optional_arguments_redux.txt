@@ -1,0 +1,16 @@
+Some ruby documentation uses [] to denote optional arguments in methods. They are
+nested, which is a terrible way to denote optional arguments, but c'est la vie.
+
+Date.civil is an alias for Date.new and creates a new Date object.
+
+puts Date.civil
+=> -4712-01-01
+
+puts Date.civil(2016)
+=> 2016-01-01
+
+puts Date.civil(2016, 5)
+=> 2016-05-01
+
+puts Date.civil(2016, 5, 13)
+=> 2016-05-01

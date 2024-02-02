@@ -1,0 +1,9 @@
+:: methods are class methods and are called from the class itself.
+# methods are object methods and are caldd from an object who's type matches the
+class type #method is from.
+
+File::path is a class method and is not called on an object. It returns the 
+string representation of the file path passed to it.
+
+File#path is an instance method and is called on a specific file object. It 
+returns a string of the file path used to create the file.

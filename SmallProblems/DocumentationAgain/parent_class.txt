@@ -1,0 +1,4 @@
+public_methods takes an optional bool. If set to false, only returns the current
+object's methods, ignoring its parents.
+
+puts s.public_methods(false).inspect

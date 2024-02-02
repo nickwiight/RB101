@@ -1,0 +1,9 @@
+Default parameters do not need to be at the end, but do need to be together. 
+Ruby checks the mandatory values from the front, then from the back, 
+then fills optional values from left to right.
+
+my_method(4, 5, 6)
+=> [4, 5, 3, 6]
+
+my_method(4, 5)
+=> [4, 2, 3, 5]

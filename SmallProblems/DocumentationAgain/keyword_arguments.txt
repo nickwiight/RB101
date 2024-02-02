@@ -1,0 +1,10 @@
+Some methods take keyword arguements (or named arguments). Keyword arguement names
+are symbols. The keyword must be included when calling the method. The order of 
+keyword arguments is not mandatory.
+
+#step starts from self, evaluates the block, then adds by, until the result is 
+greater than to. Does not evaluate the last step. Returns an array.
+
+prints:
+5
+8

@@ -1,0 +1,13 @@
+Ruby allows a sort of multiple inheritance through mixin using its modules. A class
+can include another, gaining access to the new classes methods. The module can 
+require a method definition in the main class. Mixins generall, and modules 
+specifically, are similar to interfaces. The main difference is that mixins 
+can't check if an object includes the module like you can check if a class
+implements an interface.
+
+#min is not an array method. It's documentation can be found in the included
+enumerable module. 
+
+puts a.min(2)
+3
+5

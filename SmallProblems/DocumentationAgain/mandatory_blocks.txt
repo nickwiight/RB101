@@ -1,0 +1,12 @@
+Some methods require a block as a parameter. 
+
+#bsearch takes a block as a parameter. If no block is given, it returns an 
+enumerator. The block passed should have all falses first, then all trues.
+For example, x == 7 is a bad operand to pass into the block because there could
+be falses, a true, then more falses. 
+
+If a logical operation is passed into the block, bsearch returns the first member
+of the array that passes the operation. 
+
+a.bsearch { |x| x > 8 }
+=> 11
