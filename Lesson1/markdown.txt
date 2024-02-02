@@ -1,0 +1,48 @@
+Launch School uses github markdown. Properly formatting forum messages makes them
+easier to read, which makes it more likely someone will answer any questions I 
+have.
+
+HEADINGS
+#   First level heading
+##  Second level heading
+### Thrid level heading
+
+STYLING
+**bold**  __bold__
+*itallic* _italic_
+~~strikethrough~~
+*formating can be **nested***
+
+QUOTING
+> Quoted text
+`One line of code`
+```
+Multiple
+Lines
+Of
+Code
+```
+
+LINKS
+[link text](https://link.url)
+
+LIST
+- Unordered List item
+	- Nested List Item
+* Unordered List item
++ Unordered List item
+
+1. Ordered List item
+2. Ordered List item
+	- Nested List item
+3. Ordered List item
+
+TASK LIST
+- [x] Completed item
+- [ ] unocmpleted item
+
+PARAGRAPH
+New paragraphs require a black line between lines of text. 
+
+COMMENT
+<!-- This is a comment -->

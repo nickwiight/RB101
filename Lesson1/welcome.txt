@@ -1,0 +1,17 @@
+The Discussion forum is for questions about the current lesson. The General Forum
+is for non-lesson specific conversations and questions. 
+
+Reinforce the Slack habit. Check Slack regularly. #the-spot is where study groups
+are formed. Slack is the defacto work communication platform, so getting used to
+it will help. 
+
+Get good feedback by asking specific questions that fully explain the issue, the
+attempted solutions, and show any code and errors needed. The easier it is for
+someone to get to the core question and answer needed for me, the faster someone
+will answer. Use Rubber Duck debugging.
+
+Use one Github repository for each course. Use folders for each lesson. Each exercise
+should be its own file.
+
+Ask questions, but also answer questions if I know the answer. Try to make learning
+at Launch School collaberative.

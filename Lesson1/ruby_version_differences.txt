@@ -1,0 +1,4 @@
+Ruby, like all languages, is constantly being worked upon and improved. This means
+that features will be added and removed over time. Ruby has great documentation
+that is version specific. Make sure to look at the correct version of ruby 
+documentation. 
