@@ -1,0 +1,9 @@
+Ruby considers everything to be truthy except false and nil. 
+
+num = 5
+
+if num
+	puts 'no error'
+end
+
+This would put 'no error' to the console. 0 is also considered truthy.

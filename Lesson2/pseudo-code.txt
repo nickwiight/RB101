@@ -1,0 +1,79 @@
+# sum of two integers
+Given two numbers, set their sum to a variable named result.
+Print result.
+
+START
+Given two integers
+
+SET result = Integer1 + Integer2
+
+PRINT result
+END
+
+
+# combine array of strings to one string
+Given an array of strings, create a variable named result. Loop over every
+index of the array and concat them to result. Print result
+
+START
+Given an array of strings named strings
+
+SET result = ''
+
+WHILE i < strings' length
+	result concat array[i]
+
+PRINT result
+END
+
+
+# every other element of an array
+Given an array, create an empty array named result. Loop over every index of the
+given array and push it to result if its index is even.
+
+START
+Given an array named array.
+
+SET result = []
+
+while i < array's length
+	if i is even
+		result.push array[i]
+
+PRINT result
+END
+
+
+# return the index of the third occurrence of a character in a string
+Given a string named string, create a variable named count. Loop over every character
+in string. If the character is the needed character, increase count by 1. If count
+is 3, print the index.
+
+START
+Given an string named string and a character named character
+
+SET count = 0
+
+WHILE i < string.length
+	if string[i] == character
+		count += 1
+	if count == 3
+		PRINT i
+END
+
+
+# merge two arrays
+Given two arrays, named arr1 and arr2. Create a new array variable named result.
+Loop over arr1. Push arr1[i], then arr2[i] to result. Print result
+
+START
+Given two arrays, arr1 and arr2
+
+SET result = []
+
+while i < arr1.length
+	result.push(arr1[i])
+	result.push(arr2[i])
+
+PRINT result
+END
