@@ -1,0 +1,6 @@
+The first block of code prints Alice, then Bob because name was reassigned, sending
+its value to a new place in memory.
+
+In the second block of code, both name and save_name print BOB because upcase changes
+the data in memory of name, which save_name is also pointing to. Since save_name
+is pointing to the same spot in memory, its value is also changed.
