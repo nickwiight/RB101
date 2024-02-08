@@ -1,0 +1,41 @@
+---
+en:
+  welcome: "Welcome to Calculator!"
+  operator_prompt: |
+    Which operation should be used?
+    1) addition
+    2) subtraction
+    3) multiplication
+    4) division
+  enter_number: "Enter a number:"
+  invalid_number: Not a valid number. Try again.
+  invalid_operation: You must choose 1, 2, 3, or 4. Try again.
+  adding: Adding
+  subtracting: Subtracting
+  multiplying: Multiplying
+  dividing: Dividing
+  divide_by_0: Cannot divide by 0
+  try_again: Do you want to perform another calculation? (Y to calculate again)
+  goodbye: Thank you for using calculator. Goodbye!
+  combining_numbers: " the two numbers..."
+  result: "Result: "
+es:
+  welcome: "Welcome to Calculator!"
+  operator_prompt: |
+    Which operation should be used?
+    1) addition
+    2) subtraction
+    3) multiplication
+    4) division
+  enter_number: "Enter a number:"
+  invalid_number: Not a valid number. Try again.
+  invalid_operation: You must choose 1, 2, 3, or 4. Try again.
+  adding: Adding
+  subtracting: Subtracting
+  multiplying: Multiplying
+  dividing: Dividing
+  divide_by_0: Cannot divide by 0
+  try_again: Do you want to perform another calculation? (Y to calculate again)
+  goodbye: Thank you for using calculator. Goodbye!
+  combining_numbers: " the two numbers..."
+  result: "Result: "

@@ -1,0 +1,5 @@
+choose: 'Choose one: %s'
+invalid: 'Not a valid choice. Try again.'
+see_score: 'Do you want to see the score? (Y to see)'
+choices: 'You chose %s, the computer chose %s.'
+play_again: 'Do you want ot play again? (Y to continue)'

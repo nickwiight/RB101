@@ -1,53 +1,68 @@
-OPERATOR_PROMPT = <<~MSG
-  Which operation should be used?
-  1) addition
-  2) subraction
-  3) multiplication
-  4) division
-MSG
+require 'yaml'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+LANGUAGE = 'en'
+
+def messages(message, lang)
+  MESSAGES[lang][message]
+end
 
 def prompt(message)
   puts ">> #{message}"
 end
 
+def integer?(string)
+  string.to_i.to_s == string
+end
+
+def float?(string)
+  string.to_f.to_s == string
+end
+
+def number?(string)
+  integer?(string) || float?(string)
+end
+
 def valid_number
   num = 0
   loop do
-    prompt 'Enter a number:'
-    num = gets.chomp.to_i
-    break if num != 0
+    prompt messages('enter_number', LANGUAGE)
+    num = gets.chomp
+    break if number?(num)
 
-    prompt 'Not a valid number. Try again.'
+    prompt messages('invalid_number', LANGUAGE)
   end
   num
 end
 
 def valid_operation
   operation = 0
-  prompt OPERATOR_PROMPT
+  prompt messages('operator_prompt', LANGUAGE)
   loop do
     operation = gets.chomp.to_i
     break unless %w[1 2 3 4].include? operation
 
-    prompt 'You must choose 1, 2, 3, or 4'
+    prompt messages('invalid_operation', LANGUAGE)
   end
   operation
 end
 
 def operation_to_message(op)
-  case op
-  when 1 then 'Adding'
-  when 2 then 'Subracting'
-  when 3 then 'Multiplying'
-  when 4 then 'Dividing'
-  end
+  word = case op
+         when 1 then MESSAGES[LANGUAGE]['adding']
+         when 2 then MESSAGES[LANGUAGE]['subtracting']
+         when 3 then MESSAGES[LANGUAGE]['multiplying']
+         when 4 then MESSAGES[LANGUAGE]['dividing']
+         end
+  x = 'A random line of code.'
+
+  word
 end
 
-prompt 'Welcome to calculator'
+prompt messages('welcome', LANGUAGE)
 
 loop do
-  x = valid_number
-  y = valid_number
+  x = valid_number.to_i
+  y = valid_number.to_i
 
   operation = valid_operation
 
@@ -55,14 +70,21 @@ loop do
            when 1 then x + y
            when 2 then x - y
            when 3 then x * y
-           when 4 then x * 1.0 / y
+           when 4
+             if y.positive?
+               x * 1.0 / y
+             else
+               prompt messages('divide_by_0', LANGUAGE)
+             end
            end
 
-  prompt "#{operation_to_message(operation)} the two numbers..."
-  prompt "Result: #{result}"
+  if result
+    prompt (operation_to_message(operation).to_s + messages('combining_numbers', LANGUAGE))
+    prompt (messages('result', LANGUAGE) + result.to_s)
+  end
 
-  prompt 'Do you want to perform another calculation? (Y to calculate again)'
+  prompt messages('try_again', LANGUAGE)
   break unless gets.chomp.downcase.start_with?('y')
 end
 
-prompt 'Thank you for using caluclator. Goodbye!'
+prompt messages('goodbye', LANGUAGE)
