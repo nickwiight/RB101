@@ -1,82 +1,126 @@
 require 'yaml'
 
+LANGUAGE = 'en' # Only supports enlish at the moment.
 MESSAGES = YAML.load_file 'rps_messages.yml'
-MOVES = {
-  rock: { inputs: %w[r rock], beats: %i[scissors] },
-  paper: { inputs: %w[p paper], beats: %i[rock] },
-  scissors: { inputs: %w[s scissors], beats: %i[paper] }
-}
-MOVES.freeze
 
-def display_message (key, *args)
-  message = (args.empty? ? MESSAGES[key] : MESSAGES[key] % args)
-  prompt message
+# If extended moves are used, they are combined with standard moves, so standard
+# moves needs the extended moves win logic
+STANDARD_MOVES = {
+  rock: { inputs: MESSAGES[LANGUAGE]['rock_inputs'], beats: %i[scissors lizard] },
+  paper: { inputs: MESSAGES[LANGUAGE]['paper_inputs'], beats: %i[rock spock] },
+  scissors: { inputs: MESSAGES[LANGUAGE]['scissors_inputs'], beats: %i[paper lizard] }
+}
+EXTENDED_MOVES = {
+  lizard: { inputs: MESSAGES[LANGUAGE]['lizard_inputs'], beats: %i[paper spock] },
+  spock: { inputs: MESSAGES[LANGUAGE]['spock_inputs'], beats: %i[rock scissors] }
+}
+
+def display_message(key, *args)
+  prompt message(key, *args)
+end
+
+def message(key, *args)
+  args.empty? ? MESSAGES[LANGUAGE][key] : MESSAGES[LANGUAGE][key] % args
 end
 
 def prompt(string)
   puts ">> #{string}"
 end
 
-def player_choice
-  choice = nil
-  loop do
-    display_message 'choose', MOVES.keys.join(', ')
-    input = gets.chomp.downcase
-    choice = get_valid_choice input
-    break if choice
-
-    display_message 'invalid'
-  end
-  choice
+def clear_screen
+  system 'clear'
 end
 
-def get_valid_choice(string)
-  valid = nil
-  valid = :rock if MOVES[:rock][:inputs].include? string
-  valid = :paper if MOVES[:paper][:inputs].include? string
-  valid = :scissors if MOVES[:scissors][:inputs].include? string
-  valid
+def display_move_choices
+  # Too long for a ternary
+  move_prompt = if MOVES.length > STANDARD_MOVES.length
+                  message 'extended_moves'
+                else
+                  message 'moves'
+                end
+  display_message('choose', move_prompt)
+end
+
+def input_choice
+  move = nil
+  loop do
+    display_move_choices
+    input = gets.chomp.downcase
+    move = to_move(input)
+    break if move
+
+    clear_screen
+    display_message 'invalid'
+  end
+  move
+end
+
+def to_move(string)
+  move = nil
+  MOVES.each { |k, v| move = k if v[:inputs].include? string }
+  move
 end
 
 def display_winner(player_win, computer_win)
-  message = "It's a tie!"
-  message = 'You won!' if player_win
-  message = 'The computer won!' if computer_win
-  prompt message
-end
-
-def score(win)
-  win ? 1 : 0
+  message = 'tie'
+  message = 'win' if player_win
+  message = 'lose' if computer_win
+  display_message message
 end
 
 def display_score(player_score, computer_score)
   display_message 'see_score'
-  see_score = gets.chomp.downcase
-  return unless see_score.start_with? 'y'
+  return unless confirmation?
 
-  prompt "Player: #{player_score}"
-  prompt "Computer: #{computer_score}"
+  display_message('player_score', player_score)
+  display_message('computer_score', computer_score)
+end
+
+def confirmation?
+  input = gets.chomp.downcase
+  input.start_with? message('confirm_character') # English character is 'y'
 end
 
 player_score = 0
 computer_score = 0
+extended_rules = false
+
+clear_screen
+display_message 'welcome'
+display_message 'extended?'
+extended_rules = true if confirmation?
+
+display_message 'see_rules'
+if confirmation?
+  display_message(extended_rules ? 'extended_rules' : 'rules')
+end
+
+MOVES = extended_rules ? STANDARD_MOVES.merge(EXTENDED_MOVES) : STANDARD_MOVES
+
+display_message 'ready'
+# Await player input only
+gets
+
 loop do
-  choice = player_choice
+  clear_screen
+  player_choice = input_choice
   computer_choice = MOVES.keys.sample
 
-  display_message 'choices', choice, computer_choice
+  display_message 'choices', player_choice, computer_choice
 
-  player_win = MOVES[choice][:beats].include? computer_choice
-  computer_win = MOVES[computer_choice][:beats].include? choice
+  player_win = MOVES[player_choice][:beats].include? computer_choice
+  computer_win = MOVES[computer_choice][:beats].include? player_choice
 
   display_winner player_win, computer_win
-  player_score += score player_win
-  computer_score += score computer_win
+  player_score += player_win ? 1 : 0
+  computer_score += computer_win ? 1 : 0
 
   display_score player_score, computer_score
 
   display_message 'play_again'
-  play_again = gets.chomp.downcase
-
-  break unless play_again.start_with? 'y'
+  break unless confirmation?
 end
+
+clear_screen
+display_message 'thanks'
+display_message 'goodbye'
