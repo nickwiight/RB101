@@ -1,0 +1,18 @@
+Most things felt comfortable. There were only a couple questions that felt like they
+might be traps. I got hit by at least one trap.
+
+do/end and {} do not always create a block. While loops can use do/end and do
+not create a block or their own scope. 
+
+I got the object as an arguement question! Fives.
+
+Hm. I figured that ruby searches for a local variable before looking for a method
+to call. Ah. The 'but can't access it from within the method' should have sent
+alarms off. I chose B because I thought it was MORE right than C, so I at least
+knew C was true. 
+
+Overall, I fell for one trap and made one mistake. Not AMAZING, but acceptable.
+
+Most importantly, I felt really comfortable with all the concepts shown in Lesson 2's
+quiz. I have a solid grasp on ruby's style, scope, logic, variable mutation, return
+values, and variables as pointers.
