@@ -50,14 +50,11 @@ def play_game(game_state)
   loop do
     clear_screen
     move_selection(game_state)
-    display_message 'choices', game_state[:player][:move_choice],
-                    game_state[:computer][:move_choice]
-
     display_winner game_state
     update_scores game_state
     display_scores game_state
 
-    break unless game_over?
+    break unless game_over?(game_state)
 
     display_message 'continue'
     gets
@@ -103,6 +100,8 @@ def convert_input_to_move(input)
 end
 
 def display_winner(game_state)
+  display_message 'choices', game_state[:player][:move_choice],
+                  game_state[:computer][:move_choice]
   message = if player_win? game_state
               'win'
             elsif computer_win? game_state
@@ -134,8 +133,8 @@ def display_scores(game_state)
 end
 
 def game_over?(game_state)
-  game_state[:player][:score] < win_count &&
-    game_state[:computer][:score] < win_count
+  game_state[:player][:score] < game_state[:rounds_to_win] &&
+    game_state[:computer][:score] < game_state[:rounds_to_win]
 end
 
 def confirmation?
@@ -245,7 +244,7 @@ display_message 'ready'
 gets
 
 loop do
-  play_game(game_state, rounds_to_win)
+  play_game(game_state)
   display_grand_winner(game_state)
 
   display_message 'play_again'
