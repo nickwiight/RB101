@@ -46,17 +46,18 @@ def clear_screen
   system 'clear'
 end
 
-def play_game(game_state, win_count)
+def play_game(game_state)
   loop do
     clear_screen
     move_selection(game_state)
+    display_message 'choices', game_state[:player][:move_choice],
+                    game_state[:computer][:move_choice]
 
     display_winner game_state
     update_scores game_state
     display_scores game_state
 
-    break unless game_state[:player][:score] < win_count &&
-                 game_state[:computer][:score] < win_count
+    break unless game_over?
 
     display_message 'continue'
     gets
@@ -64,14 +65,11 @@ def play_game(game_state, win_count)
 end
 
 def move_selection(game_state)
-  game_state[:player][:move_choice] = input_choice
+  game_state[:player][:move_choice] = get_player_choice
   game_state[:computer][:move_choice] = MOVES.keys.sample
-
-  display_message 'choices', game_state[:player][:move_choice],
-                  game_state[:computer][:move_choice]
 end
 
-def input_choice
+def get_player_choice
   input = ''
   loop do
     display_move_choices
@@ -82,7 +80,7 @@ def input_choice
     display_message 'invalid'
   end
 
-  convert_input_to_move(input)
+  convert_input_to_move input
 end
 
 def display_move_choices
@@ -133,6 +131,11 @@ end
 def display_scores(game_state)
   display_message('player_score', game_state[:player][:score])
   display_message('computer_score', game_state[:computer][:score])
+end
+
+def game_over?(game_state)
+  game_state[:player][:score] < win_count &&
+    game_state[:computer][:score] < win_count
 end
 
 def confirmation?
@@ -195,6 +198,24 @@ def display_grand_winner(game_state)
   puts "+-#{'-' * box_size}-+"
 end
 
+def extended_rules(game_state)
+  display_message 'welcome'
+  display_message 'extended?'
+  game_state[:extended_rules] = true if confirmation?
+end
+
+def see_rules(game_state)
+  display_message 'see_rules'
+  if confirmation?
+    display_message(game_state[:extended_rules] ? 'extended_rules' : 'rules')
+  end
+end
+
+def game_rounds(game_state)
+  display_message 'rounds'
+  game_state[:rounds_to_win] = get_round_count
+end
+
 game_state = {
   player: {
     score: 0,
@@ -203,22 +224,21 @@ game_state = {
   computer: {
     score: 0,
     move_choice: nil
-  }
+  },
+  extended_rules: false,
+  rounds_to_win: 0
 }
 
 clear_screen
-display_message 'welcome'
-display_message 'extended?'
-extended_rules = true if confirmation?
-display_message 'see_rules'
-if confirmation?
-  display_message(extended_rules ? 'extended_rules' : 'rules')
-end
+extended_rules(game_state)
+see_rules(game_state)
+game_rounds(game_state)
 
-MOVES = extended_rules ? STANDARD_MOVES.merge(EXTENDED_MOVES) : STANDARD_MOVES
-
-display_message 'rounds'
-rounds_to_win = get_round_count
+MOVES = if game_state[:extended_rules]
+          STANDARD_MOVES.merge(EXTENDED_MOVES)
+        else
+          STANDARD_MOVES
+        end
 
 display_message 'ready'
 # Await player input only
