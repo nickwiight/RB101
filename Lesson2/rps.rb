@@ -4,7 +4,7 @@ LANGUAGE = 'en' # Only supports enlish at the moment.
 MESSAGES = YAML.load_file 'rps_messages.yml'
 
 # If extended moves are used, they are combined with standard moves, so standard
-# moves needs the extended moves win logic
+# moves needs the extended moves in logic
 STANDARD_MOVES = {
   rock: {
     inputs: MESSAGES[LANGUAGE]['rock_inputs'],
@@ -49,7 +49,8 @@ end
 def play_game(game_state)
   loop do
     clear_screen
-    move_selection(game_state)
+    clear_move_selection game_state
+    move_selection game_state
     display_winner game_state
     update_scores game_state
     display_scores game_state
@@ -137,6 +138,11 @@ def game_over?(game_state)
     game_state[:computer][:score] < game_state[:rounds_to_win]
 end
 
+def clear_move_selection(game_state)
+  game_state[:player][:move_choice] = nil
+  game_state[:computer][:move_choice] = nil
+end
+
 def confirmation?
   input = ''
   loop do
@@ -215,6 +221,11 @@ def game_rounds(game_state)
   game_state[:rounds_to_win] = get_round_count
 end
 
+def clear_score(game_state)
+  game_state[:player][:score] = 0
+  game_state[:player][:score] = 0
+end
+
 game_state = {
   player: {
     score: 0,
@@ -249,6 +260,8 @@ loop do
 
   display_message 'play_again'
   break unless confirmation?
+
+  clear_score(game_state)
 end
 
 clear_screen
