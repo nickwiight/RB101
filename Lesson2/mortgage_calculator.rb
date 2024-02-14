@@ -118,7 +118,7 @@ loop do
   clear_screen
   loan, apr, years = loan_info_from_user
   mpr, monthly_payment = calculate_monthly_payment(loan, apr, years)
-  display_monthly_paymentmpr, monthly_payment)
+  display_monthly_payment(mpr, monthly_payment)
 
   display_personalized_or_generic_message('calculate_another', NAME)
   break unless confirmation?
