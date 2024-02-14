@@ -1,0 +1,48 @@
+Question 1
+# uniq doesn't have a ! so it doesn't mutate
+- 1
+- 2
+- 2
+- 3
+
+Question 2
+! stands for not and it flips true to false or vice versa. It turns a truthy or 
+falsy value to true or false. ? is part of ternary syntax. It is put after a 
+boolean check followed by two results with a : between them.
+
+1. != stands for not equal. You want to use it when you want somethings not being equal
+to be true, such as an until loop. 
+2. putting ! before something like user_name would return true if user_name is nil
+or false if it has a value.
+3. ! after a method is a ruby convention that the method mutates the caller.
+4. It is impossible to know just based on the name of a method.
+5. It is impossible to know just based on the name of a method.
+6. putting !! before something turns a truthy value to true or a falsey value to false
+
+Question 3
+# could be gsub instead for all instances of the first parameter instead of the 
+first. 
+advice.sub!('important', 'urgent')
+
+Question 4
+#delete_at deletes the object at the given index. In this case, it would delete
+2.
+#delete matches its arguement and removes it from the array. In this case, it would
+delete 1.
+Both of these modify the caller, even though they don't have a ! at the end
+
+Question 5
+# I origianly used Enumerable.any?
+(10..100).cover?(42)
+
+Question 6
+'Four score and ' + famous_words
+famous_words.insert(0, 'Four score and ')
+famous_words.prepend('Four score and ') # this is better than insert, my solution
+
+Question 7
+flintstones.flatten!
+
+Question 8
+flintstones.slice('Barney').flatten # of course there was a better choice
+flintstones.assoc('Barney')

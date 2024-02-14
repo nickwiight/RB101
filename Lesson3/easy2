@@ -1,0 +1,44 @@
+Question 1
+ages.key?("Spot")
+bonus:
+#member? or #include?
+
+Question 2
+1. munsters_description.swapcase!
+2. munsters_description.capitalize!
+3. munsters_description.downcase!
+4. munsters_description.upcase!
+
+Question 3
+ages.merge!(addiitonal_ages)
+
+Question 4
+advice.include?('dino')
+advice.match?('dino') # this converts the string into a regex pattern and would also work
+
+Question 5
+flintstones = %w[Fred Barney Wilma Betty BamBam Pebbles]
+
+Question 6
+flintstones.push('Dino')
+flintstones << 'Dino' # also works
+
+Question 7
+flintstones.push('Dino', 'Hoppy')
+flintstones.push('Dino').push('Hoppy') # interestingly, this works!
+flintstones.concat(%w[Dino Hoppy])
+
+Question 8
+advice.slice!('Few things in life are as important as ')
+advice.slice!(0, advice.index('house')) # returns the index of the first letter, and slice!
+takes a start and a range, leaving house untouched.
+bonus:
+If #slice is used instead, it would return 'Few things in life are as important
+as ', but leave advice unchanged.
+
+Question 9
+statement.count('t')
+
+Question 10
+title.center(40)
+

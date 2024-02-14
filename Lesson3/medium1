@@ -1,0 +1,50 @@
+Question 1
+10.times { |x| "#{' ' * x}The Flintstones Rock!"}
+# could also use (' ' * x) + 'The Flintstones Rock!'
+
+Question 2
+It throws an error because you can't concat two different literal types.
+puts "the value of 40 + 2 is #{40 + 2}"
+puts "the value of 40 + 2 is " + (40 + 2).to_s
+
+Question 3
+def factors(number)
+	divisor = number
+	factors = []
+	while divisor > 0
+		factors << number / divisor if number % divisor == 0
+		divisor -= 1
+	end
+	factors
+end
+Bonus 1:
+The purpose of number % divisor == 0 makes sure the factors being added don't have a remainder
+Bonus 2:
+The purpose of line 8 is to make sure #factors returns the array of factors instead of the 
+result of begin/end or number.times (which would return number)
+
+Question 4
+The first implementation modifies the original buffer arguement object.
+The second implementation does not modify the original buffer arguement object. That
+means the return must be reassigned to the original buffer to work as intended.
+The first implementation returns both a meaningful value and has a side effect (modifies 
+the buffer object), and is something we should avoid, making the second implementation
+the preferred choice of the two
+
+Question 5
+The limit variable is defined outside of the method's scope, so it can't see it.
+The easiest fix is to pass the limit variable as a parameter.
+def fib(first_num, second_num, limit = 15)
+
+Question 6
+34
+
+Question 7
+It does affect the data because the munsters object id is passed into mess_with_demographics
+and assigned to demo_hash, so changes made to demo_hash affects munsters.
+
+Question 8
+paper
+
+Question 9
+"no"
