@@ -79,7 +79,7 @@ end
 def confirmation?
   input = ''
   loop do
-    input = gets.chomp
+    input = gets.chomp.downcase
     break if valid_confirmation_input? input
 
     display_message 'invalid_confirmation'
