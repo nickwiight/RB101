@@ -2,25 +2,24 @@ require 'yaml'
 
 MESSAGES = YAML.load_file 'mortgage_calculator_messages.yml'
 
-def get_loan_info_from_user
+def loan_info_from_user
   display_personalized_or_generic_message('loan_amount', NAME)
-  loan = number_input
+  loan = number_input_from_user
   display_personalized_or_generic_message('apr_amount', NAME)
-  apr = number_input
+  apr = number_input_from_user
   display_personalized_or_generic_message('loan_duration', NAME)
-  duration_in_years = number_input
+  duration_in_years = number_input_from_user
 
   return loan, apr, duration_in_years
 end
 
-def get_name_input
+def name_from_user
   display_message 'enter_name'
   name = ''
   loop do
     name = gets.chomp
     if name == ''
       display_message 'generalized'
-
     else
       display_message('your_name', name)
     end
@@ -58,7 +57,7 @@ def not_negative?(string)
   string.to_f.positive?
 end
 
-def number_input
+def number_input_from_user
   input = ''
   loop do
     input = gets.chomp
@@ -112,14 +111,14 @@ end
 
 clear_screen
 display_message 'welcome'
-NAME = get_name_input
+NAME = name_from_user
 display_personalized_or_generic_message('thanks_name', NAME)
 
 loop do
   clear_screen
-  loan, apr, years = get_loan_info_from_user
+  loan, apr, years = loan_info_from_user
   mpr, monthly_payment = calculate_monthly_payment(loan, apr, years)
-  display_monthly_payment(mpr, monthly_payment)
+  display_monthly_paymentmpr, monthly_payment)
 
   display_personalized_or_generic_message('calculate_another', NAME)
   break unless confirmation?
