@@ -1,0 +1,24 @@
+welcome: Welcome to Mortgage Calculator
+thanks_name: Okay, %s! To get you started, I have some information I need from you.
+thanks_name_generic: To get you started, I have some information I need from you.
+loan_amount: How much is your loan, %s?
+loan_amount_generic: What is your loan amount?
+apr_amount: "Thanks %s! Next: what is your APR? Example: enter 5.3 for 5.3%%"
+apr_amount_generic: "What is your APR? Example: enter 5.3 for 5.3%%"
+loan_duration: "Last one, %s! What is your loan duration in years? Accepts decimals for a partial year."
+loan_duration_generic: "What is your loan duration in years? Accepts decimals for a partial year."
+enter_name: Please enter your name for a personalized experience. Leave blank for a generalized experience.
+generalized: So you want a generalized experience? (Y/N)
+your_name: So your name is %s? (Y/N)
+monthly_breakdown: "Thanks for your patience, %s! Here's the breakdown of your monthly payment:"
+monthly_breakdown_generic: "Here's the breakdown of your monthly payment:"
+monthly_interest: "Monthly interest rate: %s"
+loan_duration_month: "Loan duration in months: %s"
+monthly_payment: "Monthly payment: $%s"
+positive_number: You must enter a positive number. Try again.
+invalid_confirmation: Invalid input. Please enter 'Y' or 'N'
+calculate_another: Would you like to calculate another mortgage, %s? (Y/N)
+calculate_another_generic: Would you like to calculate another mortgage? (Y/N)
+thanks: Thank you for using Mortgage Calculator.
+goodbye: Goodbye %s!
+goodbye_generic: Goodbye!
